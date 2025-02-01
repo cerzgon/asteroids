@@ -4,6 +4,7 @@
 
 import pygame
 from constants import *
+from player import *
 
 def main():
     # Initialize Pygame
@@ -21,6 +22,8 @@ def main():
     # Initialize delta time (dt) variable
     dt = 0
 
+    # create player here (before the loop)
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 
     # Start the game loop
     running = True
@@ -32,6 +35,9 @@ def main():
 
         # Fill the screen with black color, RGB or "color"
         screen.fill((0, 0, 0))
+
+        # draw player here (inside loop)
+        player.draw(screen)
 
         # Refresh the screen with the latest updates
         pygame.display.flip()
