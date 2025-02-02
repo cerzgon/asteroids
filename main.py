@@ -13,17 +13,26 @@ def main():
     # Create a surface (e.g., 1280x720 pixels)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    # Set the window title (optional, but helpful)
-    pygame.display.set_caption("Asteroids Game")
-
     # Create a clock object to manage fps
     clock = pygame.time.Clock()
 
+    # Set the window title (optional, but helpful)
+    pygame.display.set_caption("Asteroids Game")
+
+     # a group where all objects can be updated
+    updatable = pygame.sprite.Group()
+
+    # a group where all objects can be drawn
+    drawable = pygame.sprite.Group()
+
+    # set the Player.containers
+    Player.containers = (updatable, drawable)
+
+    # create player instance here (before the loop)
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
     # Initialize delta time (dt) variable
     dt = 0
-
-    # create player here (before the loop)
-    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 
     # Start the game loop
     running = True
@@ -35,13 +44,17 @@ def main():
 
 
         # Update game state
-        player.update(dt)
+        updatable.update(dt) # change from player.update(dt) to updatable - group
 
         # Fill the screen with black color, RGB or "color"
         screen.fill("black")
 
-        # draw player here (inside loop)
-        player.draw(screen)
+        #  change from draw player here (inside loop) to draw all sprites
+        # change from player.draw(dt) to drawable - group
+
+        # Draw all sprites using their custom draw methods
+        for obj in drawable:
+            obj.draw(screen)
 
         # Refresh the screen with the latest updates
         pygame.display.flip()
