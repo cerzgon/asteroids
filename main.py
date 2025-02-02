@@ -33,8 +33,12 @@ def main():
             if event.type == pygame.QUIT:
                 running = False  # Stop the loop and close the game
 
+
+        # Update game state
+        player.update(dt)
+
         # Fill the screen with black color, RGB or "color"
-        screen.fill((0, 0, 0))
+        screen.fill("black")
 
         # draw player here (inside loop)
         player.draw(screen)
