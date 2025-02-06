@@ -6,6 +6,7 @@ import pygame
 from constants import *
 from player import *
 from asteroidfield import *
+import sys
 
 def main():
     # Initialize Pygame
@@ -53,6 +54,12 @@ def main():
 
         # Update game state
         updatable.update(dt) # change from player.update(dt) to updatable - group
+
+        # Add collision detection here!
+        for asteroid in asteroids:
+            if player.collides_with(asteroid):
+                print("Game over!")
+                sys.exit()
 
         # Fill the screen with black color, RGB or "color"
         screen.fill("black")
