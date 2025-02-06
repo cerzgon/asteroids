@@ -5,6 +5,7 @@
 import pygame
 from constants import *
 from player import *
+from asteroidfield import *
 
 def main():
     # Initialize Pygame
@@ -19,17 +20,24 @@ def main():
     # Set the window title (optional, but helpful)
     pygame.display.set_caption("Asteroids Game")
 
+    # add this new group for asteroids
+    asteroids = pygame.sprite.Group()
+
      # a group where all objects can be updated
     updatable = pygame.sprite.Group()
 
     # a group where all objects can be drawn
     drawable = pygame.sprite.Group()
 
-    # set the Player.containers
+    # set all containers (groupd together)
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable,)
 
-    # create player instance here (before the loop)
+    # create instances (group together before group)
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+    # Start Asteroid Field before loop
+    AsteroidField()
 
     # Initialize delta time (dt) variable
     dt = 0
