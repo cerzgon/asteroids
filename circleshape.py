@@ -26,6 +26,5 @@ class CircleShape(pygame.sprite.Sprite):
         distance = self.position.distance_to(other.position)
         # Now what comparison do you need to make?
         # Remember: if distance <= sum of radii, they're colliding
-        if distance <= self.radius + other.radius:
-            return True
-        return False
+        return distance <= self.radius + other.radius
+
