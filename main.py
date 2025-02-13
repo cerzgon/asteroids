@@ -69,7 +69,7 @@ def main():
             for shot in shots:
                 if asteroid.collides_with(shot):
                     shot.kill()
-                    asteroid.kill()
+                    asteroid.split()
 
         # Fill the screen with black color, RGB or "color"
         screen.fill("black")
