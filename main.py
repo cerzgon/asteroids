@@ -62,9 +62,14 @@ def main():
 
         # Add collision detection here!
         for asteroid in asteroids:
-            if player.collides_with(asteroid):
+            if asteroid.collides_with(player):
                 print("Game over!")
                 sys.exit()
+
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    shot.kill()
+                    asteroid.kill()
 
         # Fill the screen with black color, RGB or "color"
         screen.fill("black")
